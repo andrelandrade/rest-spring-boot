@@ -6,5 +6,5 @@ spring:
     password: ${MYSQL_PASS}
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: false
