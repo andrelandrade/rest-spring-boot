@@ -3,17 +3,22 @@ package com.example.services
 import com.example.data.vo.v1.PersonVO
 import com.example.exceptions.ResourceNotFoundException
 import com.example.mapper.DozerMapper
+import com.example.mapper.custom.PersonMapper
 import com.example.model.Person
 import com.example.repository.PersonRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.logging.Logger
+import com.example.data.vo.v2.PersonVO as PersonVOV2
 
 @Service
 class PersonService {
 
     @Autowired
     private lateinit var repository: PersonRepository
+
+    @Autowired
+    private lateinit var mapper: PersonMapper
 
     private val logger = Logger.getLogger(PersonService::class.java.name)
 
@@ -55,5 +60,12 @@ class PersonService {
 
         val entity = DozerMapper.parseObject(findById(id), Person::class.java)
         repository.delete(entity)
+    }
+
+    fun createV2(personVO: PersonVOV2): PersonVOV2 {
+        logger.info("Creating one person with name ${personVO.firstName}!")
+        val entity = mapper.mapVOToEntity(personVO)
+
+        return mapper.mapEntityToVO(repository.save(entity))
     }
 }
