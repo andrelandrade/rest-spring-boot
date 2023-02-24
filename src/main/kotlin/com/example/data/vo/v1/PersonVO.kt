@@ -1,6 +1,5 @@
 package com.example.data.vo.v1
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonPropertyOrder
 
@@ -15,6 +14,6 @@ data class PersonVO (
     var lastName: String = "",
     var address: String = "",
 
-    @field:JsonIgnore
+    //@field:JsonIgnore
     var gender: String = "",
 )
