@@ -4,10 +4,8 @@ import com.example.data.vo.v1.PersonVO
 import com.example.services.PersonService
 import com.example.util.MediaType
 import org.springframework.beans.factory.annotation.Autowired
-
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import com.example.data.vo.v2.PersonVO as PersonVOV2
 
 @RestController
 @RequestMapping("/api/person/v1")
@@ -34,13 +32,6 @@ class PersonController {
         return service.create(personVO)
     }
 
-    @PostMapping(value = ["/v2"],
-                 consumes = [MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML],
-                 produces = [MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML])
-    fun createV2(@RequestBody personVO: PersonVOV2): PersonVOV2 {
-        return service.createV2(personVO)
-    }
-
     @PutMapping(consumes = [MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML],
                 produces = [MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML])
     fun update(@RequestBody personVO: PersonVO): PersonVO {
@@ -52,4 +43,11 @@ class PersonController {
         service.delete(id)
         return ResponseEntity.noContent().build<Any>()
     }
+
+    //@PostMapping(value = ["/v2"],
+    //             consumes = [MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML],
+    //             produces = [MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML])
+    //fun createV2(@RequestBody personVO: PersonVOV2): PersonVOV2 {
+    //    return service.createV2(personVO)
+    //}
 }
