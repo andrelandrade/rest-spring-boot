@@ -9,6 +9,7 @@ import org.springframework.hateoas.RepresentationModel
 data class PersonVO (
 
     @Mapping("id")
+    @field:JsonProperty("id")
     var key: Long = 0,
 
     @field:JsonProperty("first_name")
