@@ -3,7 +3,7 @@ package com.example.unittests.mapper
 import com.example.data.vo.v1.PersonVO
 import com.example.mapper.DozerMapper
 import com.example.model.Person
-import com.example.unittests.mapper.mocks.MockPerson
+import com.example.unittests.mocks.MockPerson
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

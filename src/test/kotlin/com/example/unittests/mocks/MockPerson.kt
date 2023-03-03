@@ -1,4 +1,4 @@
-package com.example.unittests.mapper.mocks
+package com.example.unittests.mocks
 
 import com.example.data.vo.v1.PersonVO
 import com.example.model.Person
