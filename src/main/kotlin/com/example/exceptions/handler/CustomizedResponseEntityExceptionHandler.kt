@@ -1,6 +1,7 @@
 package com.example.exceptions.handler
 
 import com.example.exceptions.ExceptionResponse
+import com.example.exceptions.InvalidJwtAuthenticationException
 import com.example.exceptions.RequiredObjectIsNullException
 import com.example.exceptions.ResourceNotFoundException
 import org.springframework.http.HttpStatus
@@ -37,6 +38,7 @@ class CustomizedResponseEntityExceptionHandler : ResponseEntityExceptionHandler(
 
         return ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.NOT_FOUND)
     }
+
     @ExceptionHandler(RequiredObjectIsNullException::class)
     fun handleBadRequestException(ex: Exception, request: WebRequest): ResponseEntity<ExceptionResponse> {
         val exceptionResponse = ExceptionResponse(
@@ -46,5 +48,15 @@ class CustomizedResponseEntityExceptionHandler : ResponseEntityExceptionHandler(
         )
 
         return ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.BAD_REQUEST)
+    }
+    @ExceptionHandler(InvalidJwtAuthenticationException::class)
+    fun handleInvalidJwtAuthenticationException(ex: Exception, request: WebRequest): ResponseEntity<ExceptionResponse> {
+        val exceptionResponse = ExceptionResponse(
+            Date(),
+            ex.message,
+            request.getDescription(false)
+        )
+
+        return ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.FORBIDDEN)
     }
 }
